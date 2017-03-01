@@ -636,3 +636,7 @@ properties:
   cc.diego.pid_limit:
     description: "Maximum pid limit for containerized work running user-provided code"
     default: 1024
+
+  cc.feature_flags.use_mtls_droplet_download_urls:
+    description: "When enabled, CC will generate mTLS droplet download URLs"
+    default: false

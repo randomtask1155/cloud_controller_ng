@@ -165,3 +165,6 @@ diego:
   tps_url: 'tps_url-value'
   use_privileged_containers_for_running: false
   use_privileged_containers_for_staging: false
+
+feature_flags:
+  use_mtls_droplet_download_urls: false

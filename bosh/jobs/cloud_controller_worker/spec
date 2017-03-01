@@ -660,3 +660,7 @@ properties:
   cc.loggregator.internal_url:
     description: "Internal url used to communicate with traffic_controller"
     default: "http://loggregator-trafficcontroller.service.cf.internal:8081"
+
+  cc.feature_flags.use_mtls_droplet_download_urls:
+    description: "When enabled, CC will generate mTLS droplet download URLs"
+    default: false
