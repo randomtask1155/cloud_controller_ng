@@ -49,13 +49,17 @@ Sequel::Mysql2::Database.class_eval do
 end
 
 Sequel::TinyTDS::Database.class_eval do
-  # Mysql is case insensitive by default
+  # MS SQL is case insensitive by default
   def case_insensitive_string_column_type
     'VARCHAR(255)'
   end
 
   def case_insensitive_string_column_opts
     { collate: 'Latin1_General_100_CI_AS' }
+  end
+
+  def case_sensitive_string_column_opts
+    { collate: 'Latin1_General_CS_AS' }
   end
 end
 
@@ -73,7 +77,11 @@ Sequel::Schema::Generator.class_eval do
         opts.merge(@db.case_insensitive_string_column_opts)
       )
     else
-      column(name, String, opts)
+      if @db.respond_to?(:case_sensitive_string_column_opts)
+        column(name, String, opts.merge(@db.case_sensitive_string_column_opts))
+      else
+        column(name, String, opts)
+      end
     end
   end
   # rubocop:enable Style/MethodName
